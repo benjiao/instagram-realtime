@@ -31,6 +31,8 @@ def receive(tag):
     logging.info("Tag: %s" % tag)
     logging.info("Request Data: %s" % request.data)
 
+    # TODO: <Fetch Data Here>
+
     return make_response("OK", 200)
 
 app.run(host='0.0.0.0', debug=True)
