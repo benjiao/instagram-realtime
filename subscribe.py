@@ -18,7 +18,7 @@ if __name__ == '__main__':
     except:
         raise Exception("Missing tag! Format should be 'python subscribe.py <tag>'")
 
-    FULL_CALLBACK = "%(callback)s/%(tag)s" % {
+    FULL_CALLBACK = "%(callback)s/%(tag)s/" % {
         "callback": CALLBACK,
         "tag": tag
     }
