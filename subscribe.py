@@ -29,20 +29,30 @@ if __name__ == '__main__':
 
     print "Full Callback: %s\n" % FULL_CALLBACK
 
+    headers = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+
     body = {
         "client_id": CLIENT_ID,
         "client_secret": CLIENT_SECRET,
-        "object": tag,
+        "object": "tag",
         "aspect": "media",
-        "callback_url": FULL_CALLBACK
+        "callback_url": FULL_CALLBACK,
+        "object_id": tag
     }
 
     encoded_body = urllib.urlencode(body)
     print "Encoded Body: %s" % encoded_body
 
     # Build HTTP Request
-    req = Request2(URL, method="POST", data=encoded_body)
+    req = Request2(URL, method="POST", data=encoded_body, headers=headers)
 
-    response = urllib2.urlopen(req)
-    code = response.getcode()
-    print "Response: %s\n" % response.read()
+    try:
+        response = urllib2.urlopen(req)
+        code = response.getcode()
+        print "\nResponse: %s\n" % response.read()
+    except urllib2.HTTPError, e:
+        print "\nERROR! Code: %s, Desc: %s\n" % (str(e.code), e.read())
+    except Exception:
+        raise

@@ -14,6 +14,11 @@ def index(tag):
     print "Tag: %s" % tag
     print "Request Data: %s" % request.data
 
+    challenge = request.args.get('hub.challenge')
+    print "Challenge: %s" % challenge
+    if challenge is not None:
+        return challenge
+
     return tag
 
 app.run(host='0.0.0.0', debug=True)
