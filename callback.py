@@ -12,13 +12,13 @@ logging.basicConfig(format='%(levelname)s:%(message)s',
 app = Flask(__name__)
 
 
-@app.route('/<tag>')
+@app.route('/<tag>/')
 def index(tag):
     logging.info("Tag: %s" % tag)
     logging.info("Request Data: %s" % request.data)
 
     challenge = request.args.get('hub.challenge')
-    logging.info("Challenge: %s" % challenge)
+    logging.info("Challenge: %s", challenge)
     if challenge is not None:
         return challenge
 
