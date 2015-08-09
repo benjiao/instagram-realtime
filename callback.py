@@ -4,13 +4,15 @@ service should call.
 """
 
 from flask import Flask
+from flask import request
 
 app = Flask(__name__)
 
 
 @app.route('/<tag>')
 def index(tag):
-    print tag
+    print "Tag: %s" % tag
+    print "Request Data: %s" % request.data
 
     return tag
 
